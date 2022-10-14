@@ -13,7 +13,7 @@ const initdb = async () =>
 	});
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (id, content) => {
+export const putDb = async (content) => {
 	console.log("PUT to the database");
 
   // create connection and version we want
@@ -26,9 +26,8 @@ export const putDb = async (id, content) => {
 	const store = tx.objectStore("jate");
 
   // make request
-	const request = store.put({
-		id: id,
-		content: content
+  const request = store.put({
+    content: content
   });
   // confirm request
 	const result = await request;
@@ -36,7 +35,7 @@ export const putDb = async (id, content) => {
 };
 
 // TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => {
+export const getDb = async (e) => {
 	console.log("GET from the database");
 
 	// Create a connection to the IndexedDB database and the version we want to use.

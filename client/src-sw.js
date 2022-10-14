@@ -30,7 +30,7 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 registerRoute(
 	({ request }) => ["style", "script", "worker"].includes(request.destination),
 	new StaleWhileRevalidate({
-		cacheName: "static-resources",
+		cacheName: "the_assets",
 		plugins: [
 			new CacheableResponsePlugin({
 				statuses: [0, 200],
@@ -38,8 +38,3 @@ registerRoute(
 		],
 	})
 );
-
-offlineFallback({
-  urls: ["/index.html", "/"],
-  strategy: pageCache,
-});
